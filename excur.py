@@ -12,6 +12,10 @@ def excur_web_data_get(city):
         print('excur: request failed')
         raise
 
+    if answer.status_code == 404:
+        print('excur: wrong city name')
+        raise
+
     return answer
 
 def excur_parse(what, data):
