@@ -18,9 +18,9 @@ Running the script (interactive option)
 
 Example of output
 ```
-Date: 01.05.2023; Time: 12:55
-Buy USD  : 81,50
-Sell USD : 78,65
-Buy EUR  : 89,75
-Sell EUR : 87,25
+Date: 01.05.2023; Time: 13:07
+Сurrency    Buy    Sell
+----------  -----  ------
+USD         81,50  78,65
+EUR         89,75  87,25
 ```

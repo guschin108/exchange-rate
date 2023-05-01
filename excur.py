@@ -3,6 +3,7 @@ import argparse
 import requests
 import datetime
 from bs4 import BeautifulSoup
+from tabulate import tabulate
 
 def excur_web_data_get(city):
     try:
@@ -63,19 +64,17 @@ def excur_eur_best_buy_parse(data):
         raise
 
 def print_rates(args):
-    now = datetime.datetime.now() 
-    print(now.strftime("Date: %d.%m.%Y; Time: %H:%M"))
-
     try:
         data = excur_web_data_get(args.city)
     except:
         return
 
-    print('Buy USD  : ' + excur_usd_best_buy_parse(data))
-    print('Sell USD : ' + excur_usd_best_sell_parse(data))
-
-    print('Buy EUR  : ' + excur_eur_best_buy_parse(data))
-    print('Sell EUR : ' + excur_eur_best_sell_parse(data))
+    now = datetime.datetime.now() 
+    print(now.strftime("Date: %d.%m.%Y; Time: %H:%M"))
+    rates = []
+    rates.append(['USD', excur_usd_best_buy_parse(data), excur_usd_best_sell_parse(data)])
+    rates.append(['EUR', excur_eur_best_buy_parse(data), excur_eur_best_sell_parse(data)])
+    print(tabulate(rates, headers=['Сurrency', 'Buy', 'Sell']))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Get exchange rates from https://excur.ru")
